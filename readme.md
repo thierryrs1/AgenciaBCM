@@ -4,6 +4,7 @@ Landing Page institucional e de alta conversão desenvolvida para a **Agência B
 
 ## ✨ Destaques do Projeto
 
+- **Logotipo Vetorial em SVG (`logo-bcm.svg` & `logo-bcm-icon.svg`)**: Reconstrução vetorial fiel do logotipo oficial **BCM. marketing** (com a ligação geométrica característica entre `B`, `C`, `M`, o ponto e o subtítulo espaçado), garantindo nitidez máxima em qualquer tela e no favicon.
 - **Identidade Visual Fiel (`#IssoÉBCM`)**: Paleta cromática autêntica e tipografia editorial (`Plus Jakarta Sans`, `Cormorant Garamond` e `Great Vibes`), reproduzindo a estética dos posts e manifestos oficiais da agência.
 - **Acervo Real Otimizado**: Imagens reais extraídas do portfólio da agência (`assets/img/`), incluindo o tríptico fixado de manifesto, o prêmio **Melhores do Ano 2026 (Melhor Agência do Ano)**, retratos de posicionamento (**Beatriz Cano** e direção audiovisual) e bastidores de cobertura na **Festa do Peão de Barretos** e **Melhores do Ano Cambuí/MG**.
 - **Portfólio Interativo com Filtros e Lightbox**: Galeria filtrável por categoria (*Grandes Eventos & Imprensa*, *Fotografia & Audiovisual*, *Posicionamento & Editorial*) com visualização ampliada e integração direta ao Behance.
