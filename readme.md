@@ -9,7 +9,8 @@ Landing Page institucional e de alta conversão desenvolvida para a **Agência B
 - **Acervo Real Otimizado**: Imagens reais extraídas do portfólio da agência (`assets/img/`), incluindo o tríptico fixado de manifesto, o prêmio **Melhores do Ano 2026 (Melhor Agência do Ano)**, retratos de posicionamento (**Beatriz Cano** e direção audiovisual) e bastidores de cobertura na **Festa do Peão de Barretos** e **Melhores do Ano Cambuí/MG**.
 - **Portfólio Interativo com Filtros e Lightbox**: Galeria filtrável por categoria (*Grandes Eventos & Imprensa*, *Fotografia & Audiovisual*, *Posicionamento & Editorial*) com visualização ampliada e integração direta ao Behance.
 - **Simulador de Diagnóstico Rápido**: Formulário interativo que monta automaticamente o briefing do cliente e redireciona para o WhatsApp oficial da agência com mensagem personalizada.
-- **100% Responsivo & Sem Dependências Pesadas**: Construído com HTML5 semântico, CSS3 moderno e JavaScript puro centralizado em `app.js`.
+- **100% Responsivo (Otimizado para Android e iOS/iPhone)**: Suporte a `viewport-fit=cover` e `safe-area-inset` (Notch/Dynamic Island e barra inferior do iOS), prevenção de auto-zoom no Safari em campos de formulário (`16px`), filtros de portfólio com *swipe* horizontal nativo, grid de portfólio compacto em 2 colunas no mobile e menu gaveta com bloqueio de rolagem.
+- **Sem Dependências Pesadas**: Construído com HTML5 semântico, CSS3 moderno e JavaScript puro centralizado em `app.js`.
 
 ## 🔗 Canais Integrados
 

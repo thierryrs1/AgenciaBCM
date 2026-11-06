@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 32 396 184" fill="none" role="img" aria-label="BCM. marketing">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 32 396 196" fill="none" role="img" aria-label="BCM. marketing">
   <title>BCM. marketing</title>
+
   <!-- Letra B -->
   <path fill="#FBF6F1" fill-rule="evenodd" clip-rule="evenodd" d="
     M 50 43
@@ -61,18 +62,31 @@
     Z
   "/>
 
-  <!-- Ponto (.) com destaque Conhaque/Dourado suave ou Branco -->
+  <!-- Ponto (.) -->
   <circle cx="410" cy="146" r="17" fill="#C87941"/>
 
-  <!-- Subtítulo: m a r k e t i n g -->
-  <text
-    x="51"
-    y="203"
-    fill="#D4C2B4"
-    font-family="'Plus Jakarta Sans', 'Century Gothic', 'Futura', sans-serif"
-    font-size="31"
-    font-weight="600"
-    letter-spacing="23.5"
-  >marketing</text>
+  <!-- Subtítulo 100% Vetorial (m a r k e t i n g) — Sem dependência de fontes em Android/iOS -->
+  <g stroke="#D4C2B4" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- m -->
+    <path d="M 56 211 V 194 M 56 199 C 56 195, 60 193.5, 63.5 193.5 C 67 193.5, 69.5 195.5, 69.5 199.5 V 211 M 69.5 199 C 69.5 195, 73.5 193.5, 77 193.5 C 80.5 193.5, 83 195.5, 83 199.5 V 211"/>
+    <!-- a -->
+    <circle cx="120.5" cy="202.5" r="8.5"/>
+    <path d="M 129 194 V 211"/>
+    <!-- r -->
+    <path d="M 160 211 V 194 M 160 200 C 161.5 195.5, 165 193.5, 169 194"/>
+    <!-- k -->
+    <path d="M 195 184 V 211 M 209 194 L 196 203.5 L 210 211"/>
+    <!-- e -->
+    <path d="M 241.5 202.5 H 258 C 258 197, 254.5 193.8, 249.8 193.8 C 245 193.8, 241.5 197.5, 241.5 202.5 C 241.5 207.8, 245.2 211.2, 250.2 211.2 C 253.8 211.2, 256.5 209.6, 257.8 207.5"/>
+    <!-- t -->
+    <path d="M 290 187 V 211 M 285.5 194 H 295.5"/>
+    <!-- i -->
+    <path d="M 326 194 V 211"/>
+    <circle cx="326" cy="186.5" r="2.2" fill="#D4C2B4" stroke="none"/>
+    <!-- n -->
+    <path d="M 358 211 V 194 M 358 199.5 C 358 195.5, 361.8 193.5, 366 193.5 C 370.2 193.5, 373 196, 373 200.5 V 211"/>
+    <!-- g -->
+    <circle cx="409.5" cy="202.5" r="8.5"/>
+    <path d="M 418 194 V 211.5 C 418 216.8, 414.2 220, 409.2 220 C 405.5 220, 402.8 218.4, 401.5 216"/>
+  </g>
 </svg>
-

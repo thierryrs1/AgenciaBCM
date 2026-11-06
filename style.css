@@ -46,7 +46,9 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+  scroll-padding-top: 84px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -56,6 +58,21 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+a,
+button,
+input,
+select,
+.case-card,
+.chip {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 img {
@@ -246,6 +263,10 @@ ul {
   width: 100%;
 }
 
+.nav__mobile-cta {
+  display: none;
+}
+
 .header__actions {
   display: flex;
   align-items: center;
@@ -337,12 +358,12 @@ ul {
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 40px;
-  height: 40px;
-  background: transparent;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-subtle);
   border-radius: 10px;
-  padding: 8px;
+  padding: 10px;
   cursor: pointer;
 }
 
@@ -351,7 +372,20 @@ ul {
   width: 100%;
   height: 2px;
   background: var(--text-primary);
-  transition: var(--transition);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Hero Section */
@@ -1178,14 +1212,25 @@ ul {
 .form-group input,
 .form-group select {
   width: 100%;
-  padding: 13px 16px;
-  background: var(--bg-primary);
+  padding: 14px 16px;
+  background-color: var(--bg-primary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   color: var(--text-primary);
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  /* 16px (1rem) evita auto-zoom forçado no Safari do iOS ao tocar no campo */
+  font-size: 1rem;
+  line-height: 1.4;
   transition: border-color var(--transition);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23e29b61' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 42px;
 }
 
 .form-group input:focus,
@@ -1419,8 +1464,8 @@ ul {
 /* Floating WhatsApp */
 .whatsapp-float {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  right: calc(20px + env(safe-area-inset-right, 0px));
   z-index: 150;
   width: 58px;
   height: 58px;
@@ -1470,12 +1515,16 @@ ul {
   transform: translateY(0);
 }
 
-/* Responsive Breakpoints */
+/* ==========================================================================
+   Responsive Breakpoints — Tablets, Smartphones Android & iOS (iPhone)
+   ========================================================================== */
+
 @media (max-width: 1024px) {
   .hero__grid,
   .pillars__layout,
   .diagnostic__wrapper {
     grid-template-columns: 1fr;
+    gap: 40px;
   }
 
   .philosophy__grid,
@@ -1498,29 +1547,103 @@ ul {
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding-left: max(18px, env(safe-area-inset-left, 18px));
+    padding-right: max(18px, env(safe-area-inset-right, 18px));
+  }
+
+  /* Top Banner compacto no smartphone */
+  .top-banner {
+    font-size: 0.76rem;
+    padding: 7px 0;
+  }
+
+  .top-banner__inner {
+    gap: 8px;
+  }
+
+  /* Header & Menu Gaveta Mobile */
+  .header__inner {
+    height: 68px;
+  }
+
+  .brand__avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand__logo-svg {
+    height: 36px;
+  }
+
+  .icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+
   .nav {
-    position: fixed;
-    top: 78px;
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
     background: rgba(16, 9, 6, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-strong);
-    padding: 24px;
-    transform: translateY(-120%);
+    padding: 20px max(20px, env(safe-area-inset-left, 20px)) 28px;
+    transform: translateY(-12px);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: all var(--transition);
+    transition: transform var(--transition), opacity var(--transition), visibility var(--transition);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.8);
+    max-height: calc(100dvh - 68px);
+    overflow-y: auto;
   }
 
   .nav.open {
     transform: translateY(0);
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
   }
 
   .nav__list {
     flex-direction: column;
-    gap: 18px;
+    align-items: stretch;
+    gap: 4px;
+  }
+
+  .nav__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 8px;
+    font-size: 1.02rem;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .nav__link::after {
+    display: none;
+  }
+
+  .nav__mobile-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 20px;
+    padding-top: 8px;
+  }
+
+  .nav__mobile-socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: var(--accent-amber);
+    font-weight: 600;
   }
 
   .menu-toggle {
@@ -1531,21 +1654,259 @@ ul {
     display: none;
   }
 
+  /* Hero Mobile */
+  .hero {
+    padding: 36px 0 56px;
+  }
+
+  .eyebrow {
+    font-size: 0.74rem;
+    padding: 6px 12px;
+    margin-bottom: 18px;
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 7.8vw, 2.75rem);
+    line-height: 1.12;
+    margin-bottom: 16px;
+  }
+
+  .hero__subtitle {
+    font-size: 0.98rem;
+    margin-bottom: 26px;
+  }
+
+  .hero__cta-group {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .hero__cta-group .btn {
+    width: 100%;
+    padding: 15px 20px;
+  }
+
+  .hero__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .stat-item__divider {
+    display: none;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 12px 8px;
+  }
+
+  .stat-item__number {
+    font-size: 1.45rem;
+  }
+
+  .stat-item__label {
+    font-size: 0.7rem;
+    line-height: 1.25;
+  }
+
+  /* Tríptico e Badges sem sobreposição em telas menores */
+  .triptych {
+    gap: 8px;
+    padding: 10px;
+    border-radius: var(--radius-md);
+  }
+
+  .floating-badge,
+  .floating-ig {
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+    justify-content: flex-start;
+  }
+
+  /* Seções Gerais */
+  .section {
+    padding: 60px 0;
+  }
+
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .section-title {
+    font-size: clamp(1.7rem, 6.5vw, 2.3rem);
+  }
+
+  .section-desc {
+    font-size: 0.95rem;
+  }
+
   .philosophy__grid,
   .services__grid,
-  .portfolio__grid,
   .chip-group,
   .footer__top {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 
-  .section {
-    padding: 68px 0;
+  /* Filtros de Portfólio Deslizáveis (Swipe Horizontal tipo App) */
+  .portfolio__top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 22px;
   }
 
-  .diagnostic__form,
+  .portfolio__external,
+  .portfolio__external .btn {
+    width: 100%;
+  }
+
+  .portfolio__filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 -18px 24px;
+    padding: 4px 18px;
+    gap: 8px;
+  }
+
+  .portfolio__filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-btn {
+    flex: 0 0 auto;
+    padding: 10px 16px;
+    font-size: 0.83rem;
+  }
+
+  /* Grid de Portfólio 2 colunas estilo Instagram/Behance no celular */
+  .portfolio__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .case-card__overlay {
+    padding: 12px;
+  }
+
+  .case-card__cat {
+    font-size: 0.62rem;
+    margin-bottom: 3px;
+  }
+
+  .case-card__title {
+    font-size: 0.86rem;
+    line-height: 1.22;
+  }
+
+  .case-card__meta {
+    display: none;
+  }
+
   .behance-banner {
-    padding: 24px;
+    padding: 24px 20px;
+    gap: 20px;
+  }
+
+  .behance-banner__content h3 {
+    font-size: 1.3rem;
+  }
+
+  .behance-banner__action,
+  .behance-banner__action .btn {
+    width: 100%;
+  }
+
+  /* Formulário & FAQ Mobile */
+  .diagnostic__form {
+    padding: 24px 18px;
+  }
+
+  .faq-item__question {
+    padding: 18px 20px;
+    font-size: 0.95rem;
+  }
+
+  .faq-item__answer p {
+    padding: 0 20px 18px;
+    font-size: 0.9rem;
+  }
+
+  /* Lightbox Mobile Safe Area */
+  .lightbox {
+    padding: 16px;
+  }
+
+  .lightbox__close {
+    top: calc(14px + env(safe-area-inset-top, 0px));
+    right: 16px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .footer {
+    padding: 48px 0 calc(28px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Telas muito compactas (iPhone SE / Androids compactos <= 420px) */
+@media (max-width: 420px) {
+  .top-banner__text {
+    display: none;
+  }
+
+  .brand__logo-svg {
+    height: 32px;
+  }
+
+  .icon-btn--behance {
+    display: none;
+  }
+
+  .service-card,
+  .spotlight-card__body {
+    padding: 22px 18px;
+  }
+
+  .analogy-item {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .quote-banner {
+    padding: 18px;
+  }
+
+  .quote-banner p {
+    font-size: 1.18rem;
+  }
+}
+
+/* Desativa efeitos de hover presos em dispositivos puramente touch (Android / iOS) */
+@media (hover: none) {
+  .whatsapp-float__tooltip {
+    display: none;
+  }
+
+  .triptych__card:hover,
+  .spotlight-card:hover,
+  .service-card:hover {
+    transform: none;
   }
 }
 

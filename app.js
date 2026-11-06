@@ -33,16 +33,38 @@
     }
 
     if (menuToggle && navMenu) {
+      function closeMobileMenu() {
+        navMenu.classList.remove('open');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+      }
+
       menuToggle.addEventListener('click', function () {
         const isOpen = navMenu.classList.toggle('open');
+        menuToggle.classList.toggle('active', isOpen);
         menuToggle.setAttribute('aria-expanded', String(isOpen));
+        document.body.classList.toggle('menu-open', isOpen);
       });
 
       navLinks.forEach(function (link) {
-        link.addEventListener('click', function () {
-          navMenu.classList.remove('open');
-          menuToggle.setAttribute('aria-expanded', 'false');
-        });
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      document.addEventListener('click', function (event) {
+        if (
+          navMenu.classList.contains('open') &&
+          !navMenu.contains(event.target) &&
+          !menuToggle.contains(event.target)
+        ) {
+          closeMobileMenu();
+        }
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 768 && navMenu.classList.contains('open')) {
+          closeMobileMenu();
+        }
       });
     }
   }
@@ -69,6 +91,10 @@
 
         btn.classList.add('active');
         btn.setAttribute('aria-selected', 'true');
+
+        if (typeof btn.scrollIntoView === 'function' && window.innerWidth <= 768) {
+          btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
 
         caseCards.forEach(function (card) {
           const category = card.getAttribute('data-category');
